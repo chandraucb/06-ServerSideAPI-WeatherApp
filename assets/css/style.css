@@ -33,6 +33,10 @@ h6 {
   line-height: 1.25;
 }
 
+h3 img  {
+  height: 25px;
+}
+
 main {
   margin: 20px auto;
   width: 94%;
