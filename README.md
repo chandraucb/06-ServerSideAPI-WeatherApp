@@ -10,7 +10,7 @@ This application will display an input form for user to enter a city for researc
 ## Usage
 
 Website has been deployed using GitHub pages and can be reached through below link,
-https://chandraucb.github.io/05-3rd-Party-APIs-Calender/
+https://chandraucb.github.io/06-ServerSideAPI-WeatherApp/
 
 ## Reference
 DayJS Reference to apply various formatting,
