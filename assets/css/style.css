@@ -130,12 +130,10 @@ p {
   background-color: var(--primary);
   color: var(--dark);
   padding: 0 10px;
-
   border-radius: var(--border-radius);
   box-shadow: 6px 5px var(--light-dark);
   justify-content: center;
   display: inline-block;
-  
 }
 
 .list-group {
@@ -189,11 +187,6 @@ p {
   padding: 2.5%;
 }
 
-.forecast-container {
-  column-count: 5;
-  column-gap: 10rem;
-}
-
 /* FORM */
 .form-label,
 .form-input,
@@ -228,7 +221,6 @@ p {
 .text-uppercase {
   text-transform: uppercase;
 }
-
 
 /* FLEX CONTENT */
 .flex-row {
