@@ -11,7 +11,7 @@ var apiKey = "dc0da443fe986652e8135f72eb865747";
 var lat = "";
 var lng = "";
 
-// form submit event handler to process user entered city name 
+// form submit event handler to process user entered city name
 var formSubmitHandler = function (event) {
   event.preventDefault();
   forecastContainerEl.innerHTML = "";
@@ -127,21 +127,14 @@ var createForecastCard = function (currentDayData) {
   let cardDetails = document.createElement("p");
 
   // Convert from Kelvin to Fahrenheit
-  let minTemp = Math.round(
-    ((currentDayData.main.temp_min - 273.15) * 9) / 5 + 32
-  );
-  let maxTemp = Math.round(
-    ((currentDayData.main.temp_max - 273.15) * 9) / 5 + 32
-  );
+  let temp = Math.round(((currentDayData.main.temp - 273.15) * 9) / 5 + 32);
 
   // Covert meter/sec to Miles per hour
   let speed = Math.round(currentDayData.wind.speed * 2.237 * 2) / 2;
 
   cardDetails.innerHTML =
     "Temp " +
-    minTemp +
-    "/" +
-    maxTemp +
+    temp +
     "&deg;F <br> Wind " +
     Math.round(currentDayData.wind.speed * 2.237 * 2) / 2 +
     " MPH <br> Humidity " +
@@ -177,31 +170,14 @@ var getWeatherContent = function (lat, lng) {
 
           let previousDate = dayjs.unix(data.list[0].dt).format("YYYY-MM-DD");
 
-          let minTemp = data.list[0].main.temp_min;
-          let maxTemp = data.list[0].main.temp_max;
-
           //Display forecast label
           let cardEl = document.createElement("div");
-          cardEl.classList = "flex-row col-auto"
-          cardEl.innerHTML="<h3>5 Day Forecast:<h3><hr/><br>"
+          cardEl.classList = "flex-row col-auto";
+          cardEl.innerHTML = "<h3>5 Day Forecast:<h3><hr/><br>";
           weatherContainerEl.appendChild(cardEl);
 
           for (var i = 0; i < data.list.length; i++) {
-            console.log(dayjs.unix(data.list[i].dt).format("YYYY-MM-DD HH"));
-
             let currentDate = dayjs.unix(data.list[i].dt).format("YYYY-MM-DD");
-
-            minTemp =
-              minTemp >= data.list[i].main.temp_min
-                ? data.list[i].main.temp_min
-                : minTemp;
-            maxTemp =
-              maxTemp <= data.list[i].main.temp_max
-                ? data.list[i].main.temp_max
-                : maxTemp;
-
-            console.log(minTemp);
-            console.log(maxTemp);
 
             if (previousDate != currentDate) {
               console.log(data.list[i]);
@@ -259,7 +235,6 @@ var processCityLatLong = function (data, city) {
 
   getWeatherContent(lat, lng);
 };
-
 
 //Function to generate history button for each previous searched city
 var createHistoryButton = function (lat, lon, city, isActive) {
