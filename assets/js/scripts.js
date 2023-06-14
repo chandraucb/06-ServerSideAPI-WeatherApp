@@ -183,7 +183,7 @@ var getWeatherContent = function (lat, lng) {
           //Display forecast label
           let cardEl = document.createElement("div");
           cardEl.classList = "flex-row col-auto"
-          cardEl.innerHTML="<h3>5 Days Forecast<h3>"
+          cardEl.innerHTML="<h3>5 Day Forecast:<h3><hr/><br>"
           weatherContainerEl.appendChild(cardEl);
 
           for (var i = 0; i < data.list.length; i++) {
