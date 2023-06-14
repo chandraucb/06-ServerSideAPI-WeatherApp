@@ -11,7 +11,7 @@ var apiKey = "dc0da443fe986652e8135f72eb865747";
 var lat = "";
 var lng = "";
 
-/* form submit event handler to process user entered city name */
+// form submit event handler to process user entered city name 
 var formSubmitHandler = function (event) {
   event.preventDefault();
   forecastContainerEl.innerHTML = "";
@@ -26,10 +26,7 @@ var formSubmitHandler = function (event) {
   }
 };
 
-
-/* Find city's lat long based on user input and
- save it localstorage for maintaining history*/
-
+// Find city's lat long based on user input and save it localStorage for maintaining history
 var getCityLatLong = function (city) {
   var apiUrl =
     "https://api.openweathermap.org/geo/1.0/direct?q=" +
@@ -55,7 +52,6 @@ var getCityLatLong = function (city) {
 };
 
 //Create display element for present day weather details
-
 var createCurrentDayWeather = function (city, currentDayData) {
   // Create Card Div for current day weather content
   var cardEl = document.createElement("div");
@@ -103,9 +99,7 @@ var createCurrentDayWeather = function (city, currentDayData) {
   weatherContainerEl.appendChild(cardEl);
 };
 
-
 //Create display element for 5 day weather forecast
-
 var createForecastCard = function (currentDayData) {
   // Create Card Div for current day weather content
   let cardEl = document.createElement("div");
@@ -160,7 +154,6 @@ var createForecastCard = function (currentDayData) {
 };
 
 //Get weather content using Open Weather Map api
-
 var getWeatherContent = function (lat, lng) {
   weatherContainerEl.innerHTML = "";
   forecastContainerEl.innerHTML = "";
@@ -313,7 +306,6 @@ if (weatherSearch) {
 } else {
   weatherSearch = {};
 }
-
 
 //form submit event listener.
 userFormEl.addEventListener("submit", formSubmitHandler);
