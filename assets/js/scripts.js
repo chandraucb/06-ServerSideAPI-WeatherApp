@@ -1,14 +1,20 @@
 var cityInputEl = document.querySelector("#city");
 var userFormEl = document.querySelector("#user-form");
+
 var weatherContainerEl = document.querySelector("#weather-container");
+var forecastContainerEl = document.querySelector("#forecast-container");
+
 var historyContainerEl = document.querySelector("#history-buttons");
+//Open Weather API Key
 var apiKey = "dc0da443fe986652e8135f72eb865747";
 
 var lat = "";
 var lng = "";
 
+/* form submit event handler to process user entered city name */
 var formSubmitHandler = function (event) {
   event.preventDefault();
+  forecastContainerEl.innerHTML = "";
 
   var city = cityInputEl.value.trim();
 
@@ -19,6 +25,10 @@ var formSubmitHandler = function (event) {
     weatherContainerEl.textContent = "Please enter a city name";
   }
 };
+
+
+/* Find city's lat long based on user input and
+ save it localstorage for maintaining history*/
 
 var getCityLatLong = function (city) {
   var apiUrl =
@@ -43,6 +53,8 @@ var getCityLatLong = function (city) {
       weatherContainerEl.textContent = "No cities found for search criteria.";
     });
 };
+
+//Create display element for present day weather details
 
 var createCurrentDayWeather = function (city, currentDayData) {
   // Create Card Div for current day weather content
@@ -91,10 +103,13 @@ var createCurrentDayWeather = function (city, currentDayData) {
   weatherContainerEl.appendChild(cardEl);
 };
 
+
+//Create display element for 5 day weather forecast
+
 var createForecastCard = function (currentDayData) {
   // Create Card Div for current day weather content
   let cardEl = document.createElement("div");
-  cardEl.classList = "card flex-column";
+  cardEl.classList = "card flex-column col-auto";
   // Create Card Header
   let cardHeaderEl = document.createElement("h3");
   cardHeaderEl.classList = "card-header";
@@ -141,11 +156,14 @@ var createForecastCard = function (currentDayData) {
   cardBodyEl.appendChild(cardDetails);
 
   cardEl.appendChild(cardBodyEl);
-  weatherContainerEl.appendChild(cardEl);
+  forecastContainerEl.appendChild(cardEl);
 };
+
+//Get weather content using Open Weather Map api
 
 var getWeatherContent = function (lat, lng) {
   weatherContainerEl.innerHTML = "";
+  forecastContainerEl.innerHTML = "";
 
   var apiForecastUrl =
     "https://api.openweathermap.org/data/2.5/forecast?lat=" +
@@ -168,6 +186,12 @@ var getWeatherContent = function (lat, lng) {
 
           let minTemp = data.list[0].main.temp_min;
           let maxTemp = data.list[0].main.temp_max;
+
+          //Display forecast label
+          let cardEl = document.createElement("div");
+          cardEl.classList = "flex-row col-auto"
+          cardEl.innerHTML="<h3>5 Days Forecast<h3>"
+          weatherContainerEl.appendChild(cardEl);
 
           for (var i = 0; i < data.list.length; i++) {
             console.log(dayjs.unix(data.list[i].dt).format("YYYY-MM-DD HH"));
@@ -204,6 +228,7 @@ var getWeatherContent = function (lat, lng) {
     });
 };
 
+// Funtion to set active content and find weather content based on lat/long for given city
 var processCityLatLong = function (data, city) {
   for (const elIndex in historyContainerEl.children) {
     let buttonEl = historyContainerEl.children[elIndex];
@@ -242,6 +267,8 @@ var processCityLatLong = function (data, city) {
   getWeatherContent(lat, lng);
 };
 
+
+//Function to generate history button for each previous searched city
 var createHistoryButton = function (lat, lon, city, isActive) {
   let buttonEl = document.createElement("button");
   buttonEl.classList = "btn";
@@ -271,10 +298,8 @@ var buttonClickHandler = function (event) {
   getWeatherContent(event.target.dataset.lat, event.target.dataset.lon);
 };
 
-userFormEl.addEventListener("submit", formSubmitHandler);
-
+//Look for localstorage for any previous search history and create action button for those cities
 let weatherSearch = JSON.parse(localStorage.getItem("weatherSearchData"));
-
 historyContainerEl.innerHTML = "";
 
 if (weatherSearch) {
@@ -288,3 +313,7 @@ if (weatherSearch) {
 } else {
   weatherSearch = {};
 }
+
+
+//form submit event listener.
+userFormEl.addEventListener("submit", formSubmitHandler);

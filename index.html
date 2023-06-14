@@ -23,7 +23,7 @@
     </header>
 
     <main class="flex-row justify-space-between">
-      <div class="col-12 col-md-2">
+      <div class="col-12 col-md-3">
         <h3 class="card-header text-uppercase">Search for a City</h3>
         <!-- form tag to get user input -->
         <form id="user-form" class="card-body">
@@ -40,8 +40,11 @@
         <div id="history-buttons" class="card-body"></div>
       </div>
       <!--Container for displaying weather forecast-->
-      <div class="col-12 col-md-10">
-        <div id="weather-container" class=""></div>
+      <div class="col-12 col-md-9">
+        <div id="weather-container" class="list-group"></div>
+        <div id="forecast-content" class="flex-column">
+          <div id="forecast-container" class="flex-row"></div>
+        </div>
       </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
