@@ -5,7 +5,7 @@ Weather dashboard application is built using dynamically updated HTML and CSS. I
 
 This application will display an input form for user to enter a city for research the weather. Each time a search is performed it will be saved to localStorage and generates an actionable button to retrieve weather details for that city. 
 
-![Screenshot](./assets/images/Screenshot.jpg)
+![Screenshot](./assets/images/screenshot.jpg)
 
 ## Usage
 
