@@ -94,7 +94,7 @@ var createCurrentDayWeather = function (city, currentDayData) {
 var createForecastCard = function (currentDayData) {
   // Create Card Div for current day weather content
   let cardEl = document.createElement("div");
-  cardEl.classList = "card";
+  cardEl.classList = "card flex-column";
   // Create Card Header
   let cardHeaderEl = document.createElement("h3");
   cardHeaderEl.classList = "card-header";
