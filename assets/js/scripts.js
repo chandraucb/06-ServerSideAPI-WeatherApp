@@ -67,7 +67,7 @@ var createCurrentDayWeather = function (city, currentDayData) {
   iconEl.setAttribute("alt", "Weather icon");
   iconEl.setAttribute(
     "src",
-    "http://openweathermap.org/img/w/" + currentDayData.weather[0].icon + ".png"
+    "https://openweathermap.org/img/w/" + currentDayData.weather[0].icon + ".png"
   );
 
   cardHeaderEl.appendChild(iconEl);
@@ -119,7 +119,7 @@ var createForecastCard = function (currentDayData) {
   iconEl.setAttribute("alt", "Weather icon");
   iconEl.setAttribute(
     "src",
-    "http://openweathermap.org/img/w/" + currentDayData.weather[0].icon + ".png"
+    "https://openweathermap.org/img/w/" + currentDayData.weather[0].icon + ".png"
   );
 
   cardBodyEl.appendChild(iconEl);
